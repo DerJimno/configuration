@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # login-manager (ly)
 systemctl enable ly.service
 
