@@ -9,6 +9,11 @@ RUN+=\"/bin/chgrp video \$sys\$devpath/brightness\", \
 RUN+=\"/bin/chmod g+w \$sys\$devpath/brightness\"" | \
 sudo tee /etc/udev/rules.d/backlight.rules
 
+# conf default sound card
+echo "defaults.pcm.card 1
+defaults.ctl.card 1" | \
+sudo tee /etc/asound.conf
+
 # conf notifications 
 echo "[D-BUS Service]
 Name=org.freedesktop.Notifications
