@@ -1,21 +1,24 @@
 #!/usr/bin/env bash
 
-# login-manager (ly)
-systemctl enable ly.service
-
-# conf brightness
+# Configure brightness
 echo "ACTION==\"add\", SUBSYSTEM==\"backlight\", \
 RUN+=\"/bin/chgrp video \$sys\$devpath/brightness\", \
 RUN+=\"/bin/chmod g+w \$sys\$devpath/brightness\"" | \
 sudo tee /etc/udev/rules.d/backlight.rules
 
-# conf default sound card
+
+# Configure default sound card
 echo "defaults.pcm.card 1
 defaults.ctl.card 1" | \
 sudo tee /etc/asound.conf
 
-# conf notifications 
+
+# Configure notifications 
 echo "[D-BUS Service]
 Name=org.freedesktop.Notifications
 Exec=/usr/lib/notification-daemon-1.0/notification-daemon" | \
 sudo tee /usr/share/dbus-1/services/org.freedesktop.Notifications.service
+
+
+# login-manager (ly)
+systemctl enable ly.service
