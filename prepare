@@ -30,6 +30,9 @@ sudo tee /usr/share/dbus-1/services/org.freedesktop.Notifications.service
 # Login-manager (ly)
 systemctl enable ly.service
 
+# Completions for fnm
+fnm completions --shell=fish > ~/.config/fish/completions/fnm.fish
+
 
 # Enabling Kanata
 systemctl --user daemon-reload
