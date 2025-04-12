@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-# Configure brightness
-#echo "ACTION==\"add\", SUBSYSTEM==\"backlight\", \
-#RUN+=\"/bin/chgrp video \$sys\$devpath/brightness\", \
-#RUN+=\"/bin/chmod g+w \$sys\$devpath/brightness\"" | \
-#sudo tee /etc/udev/rules.d/backlight.rules
-
-
 # Configure uinput
 echo "KERNEL==\"uinput\", MODE=\"0660\", GROUP=\"uinput\", \
 OPTIONS+=\"static_node=uinput\"" | \
