@@ -13,10 +13,10 @@ defaults.ctl.card 1" | \
 sudo tee /etc/asound.conf
 
 
-# Configure notifications 
+# Configure notifications - dunst daemon
 echo "[D-BUS Service]
 Name=org.freedesktop.Notifications
-Exec=/usr/lib/notification-daemon-1.0/notification-daemon" | \
+Exec=/usr/bin/dunst" | \
 sudo tee /usr/share/dbus-1/services/org.freedesktop.Notifications.service
 
 
