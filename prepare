@@ -1,16 +1,26 @@
 #!/usr/bin/env bash
 
-# Configure uinput
-echo "KERNEL==\"uinput\", MODE=\"0660\", GROUP=\"uinput\", \
-OPTIONS+=\"static_node=uinput\"" | \
-sudo tee /etc/udev/rules.d/99-input.rules
-sudo modprobe uinput
+# Configure Kanata Service
+sudo tee /etc/systemd/system/kanata.service <<EOF
+[Unit]
+Description=Kanata Service
+Requires=local-fs.target
+After=local-fs.target
+
+[Service]
+ExecStartPre=/usr/bin/modprobe uinput
+ExecStart=/usr/bin/kanata -c /etc/kanata/pocket3.kbd
+Restart=no
+
+[Install]
+WantedBy=sysinit.target
+EOF
 
 
 # Configure default sound card
-echo "defaults.pcm.card 1
-defaults.ctl.card 1" | \
-sudo tee /etc/asound.conf
+# echo "defaults.pcm.card 1
+# defaults.ctl.card 1" | \
+# sudo tee /etc/asound.conf
 
 
 # Configure notifications - dunst daemon
