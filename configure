@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Add uinput and logged user to groups
-groupadd -r uinput
+sudo groupadd -r uinput
 sudo usermod -aG audio,video,optical,storage,input,uinput $USER
 
 # Create udev rule for uinput
