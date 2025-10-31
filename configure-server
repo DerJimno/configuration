@@ -10,6 +10,31 @@ mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 # Setup services
 systemctl enable --now nginx php-fpm mariadb
 
+# Configure Dynamic DNS
+sudo tee /etc/systemd/system/freedns.service <<EOF
+[Unit]
+Description=FreeDNS Dynamic DNS Update
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/freedns-updater.sh
+EOF
+
+# Configure DDNS timer
+sudo tee /etc/systemd/system/freedns.timer <<EOF
+[Unit]
+Description=Run FreeDNS update every 10 minutes
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=10min
+Unit=freedns.service
+
+[Install]
+WantedBy=timers.target
+EOF
 
 read -p "Do you want to set up WordPress? (y/n): " answer
 
