@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Add uinput and logged user to groups
+groupadd -r uinput
+sudo usermod -aG wheel,audio,video,optical,storage,input,uinput $USER
+
 # Create udev rule for uinput
 echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' | \
 sudo tee /etc/udev/rules.d/99-input.rules
