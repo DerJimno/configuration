@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 # Add Logged user to groups
-sudo usermod -aG wheel,storage,network $USER
+sudo usermod -aG storage,network $USER
 
