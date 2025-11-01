@@ -36,6 +36,7 @@ Unit=freedns.service
 WantedBy=timers.target
 EOF
 
+sudo systemctl daemon-reload
 sudo systemctl enable --now freedns.timer
 
 read -p "Do you want to set up WordPress? (y/n): " answer
