@@ -36,6 +36,15 @@ Unit=freedns.service
 WantedBy=timers.target
 EOF
 
+read -p "Enter your FreeDNS update key: " KEY
+sudo tee /usr/local/bin/freedns-updater.sh > /dev/null <<EOL
+#!/bin/bash
+echo "Updating FreeDNS..."
+curl -s -k "https://freedns.afraid.org/dynamic/update.php?$KEY" >/dev/null
+EOL
+
+sudo chmod +x /usr/local/bin/freedns-updater.sh
+
 sudo systemctl daemon-reload
 sudo systemctl enable --now freedns.timer
 
