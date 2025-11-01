@@ -8,7 +8,7 @@ sudo usermod -aG storage,network $USER
 sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 
 # Setup services
-systemctl enable --now nginx php-fpm mariadb
+sudo systemctl enable --now nginx php-fpm mariadb
 
 # Configure Dynamic DNS
 sudo tee /etc/systemd/system/freedns.service <<EOF
